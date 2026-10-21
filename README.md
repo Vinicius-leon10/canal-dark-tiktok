@@ -2,11 +2,11 @@
 
 Canal dark de futebol para o TikTok: vídeos curtos estilo documentário, com narração, contando curiosidades e fatos históricos do futebol.
 
-Produção semiautomática com Claude Code + ffmpeg:
+Produção semiautomática com Claude Code + ffmpeg. **Plano completo: [`docs/PLANO.md`](docs/PLANO.md).**
 
 1. **Roteiro** com gancho, escalada e revelação, dividido em cenas (`projetos/<slug>/roteiro.json`).
-2. **Visuais** por cena (fotos de domínio público, IA ou stock) em `projetos/<slug>/imagens/`.
-3. **Narração** com voz neural grátis (`ferramentas/narrar.py`, edge-tts).
+2. **Visuais** por cena (imagens do Gemini Pro geradas pelo navegador + fotos de domínio público) em `projetos/<slug>/imagens/`.
+3. **Narração** com ElevenLabs (ou edge-tts grátis como reserva) — `ferramentas/narrar.py`.
 4. **Edição** automática (`ferramentas/montar_video.py`): Ken Burns, filtro de arquivo/sépia/PB, grão de filme, transições, legendas palavra a palavra, textos de tela, música com ducking e efeitos.
 
 ## Começar

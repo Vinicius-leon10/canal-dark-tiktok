@@ -63,8 +63,7 @@ Crie a pasta `projetos/<slug>/` (slug curto, sem acento: `maracanazo-1950`) e gr
 ```json
 {
   "titulo": "O dia em que o Maracanã se calou",
-  "voz": "pt-BR-AntonioNeural",
-  "velocidade": "+5%",
+  "voz_elevenlabs": "<voice_id do canal, ver docs/PLANO.md>",
   "musica": "assets/musicas/tensao.mp3",
   "volume_musica": 0.22,
   "marca": "@seucanal",

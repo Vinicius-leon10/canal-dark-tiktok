@@ -1,48 +1,51 @@
 ---
 name: narracao-documentario
-description: Gera a voz do narrador (TTS neural grátis, edge-tts) de cada cena do roteiro.json de um vídeo do canal de futebol, com tempos palavra a palavra para as legendas. Use quando o usuário pedir narração, voz, locução, áudio, trocar a voz, deixar a voz mais lenta/rápida/grave, ou regravar cenas.
+description: Gera a voz do narrador (ElevenLabs; edge-tts como reserva grátis) de cada cena do roteiro.json de um vídeo do canal de futebol, com tempos palavra a palavra para as legendas. Use quando o usuário pedir narração, voz, locução, áudio, trocar a voz, deixar a voz mais lenta/rápida/grave/emocionante, ou regravar cenas.
 ---
 
 # Narração estilo documentário
 
-A ferramenta é `ferramentas/narrar.py` (usa `edge-tts`, vozes neurais da Microsoft, sem custo e sem chave de API — precisa de internet).
+A ferramenta é `ferramentas/narrar.py`. Motor principal: **ElevenLabs** (precisa de `ELEVENLABS_API_KEY` no ambiente). Reserva grátis: **edge-tts** (`--motor edge`, sem chave).
 
 ## Rodar
 
 ```bash
-pip install -r requirements.txt                         # uma vez
-python ferramentas/narrar.py projetos/<slug>            # narra todas as cenas
-python ferramentas/narrar.py projetos/<slug> --cenas 2 7  # refaz só essas cenas
-python ferramentas/narrar.py --vozes                    # lista vozes pt-BR / pt-PT
+python ferramentas/narrar.py projetos/<slug>              # narra todas as cenas
+python ferramentas/narrar.py projetos/<slug> --cenas 2 7  # refaz só essas cenas (economiza créditos)
+python ferramentas/narrar.py projetos/<slug> --motor edge # força a voz grátis
+python ferramentas/narrar.py --vozes elevenlabs           # lista as vozes da conta ElevenLabs
+python ferramentas/narrar.py --vozes edge                 # lista vozes pt-BR do edge-tts
 ```
 
 Gera `saida/audio/cena_XX.mp3` e `saida/narracao.json` (duração + tempo de cada palavra). O `montar_video.py` usa esse arquivo para sincronizar imagens e legendas, então **sempre que mudar o texto de uma cena, renarre essa cena**.
 
-## Escolha da voz (campo `voz` no roteiro.json)
+Se a chave não estiver definida, peça ao usuário para configurar a variável de ambiente `ELEVENLABS_API_KEY` (nunca peça para colar a chave no chat).
 
-| Voz | Quando usar |
-|---|---|
-| `pt-BR-AntonioNeural` | **Padrão do canal.** Masculina, grave, séria — tom documentário. |
-| `pt-BR-FranciscaNeural` | Feminina, clara. Bom para séries alternativas. |
-| `pt-BR-ThalitaMultilingualNeural` | Feminina, mais expressiva. |
+## ElevenLabs
 
-Mantenha **a mesma voz em todos os vídeos**: a voz vira a identidade do canal dark.
+Campos no roteiro.json (nível do vídeo; também valem dentro de uma cena):
+- `voz_elevenlabs`: voice_id da voz do canal (está registrado em `docs/PLANO.md`). **Mesma voz em todos os vídeos** — ela é a identidade do canal.
+- `modelo_elevenlabs`: padrão `eleven_multilingual_v2`.
+- `ajustes_elevenlabs`: `stability` (0.5 — menor deixa mais emotivo, maior mais estável), `similarity_boost` (0.75), `style` (0.15 — mais alto = mais dramático, custa estabilidade), `speed` (1.0; use 0.9–1.1).
 
-## Ajuste fino
+Escolher a voz: liste com `--vozes elevenlabs`, gere a frase do gancho com 2–3 candidatas (narração masculina, grave, "documentary/narrator/deep") e deixe o usuário escolher ouvindo. Registre a escolha em `docs/PLANO.md`.
 
-No roteiro.json (vale para o vídeo todo) ou dentro de uma cena (só para ela):
-- `velocidade`: `"+5%"` é o padrão. Documentário tenso: `"+0%"` a `"+5%"`. Lista rápida de fatos: `"+10%"` a `"+15%"`. Nunca acima de `+20%`.
-- `tom`: `"-2Hz"` padrão (um pouco mais grave). Até `"-6Hz"` para mais sombrio; abaixo disso fica robótico.
+O script envia o texto das cenas vizinhas como contexto, então a entonação fica contínua mesmo com um arquivo por cena. Custo ≈ caracteres do roteiro (~1.000 por vídeo de 60s).
 
-Ritmo pela pontuação do texto:
+## edge-tts (reserva)
+
+Campos: `voz` (padrão `pt-BR-AntonioNeural`), `velocidade` (`"+5%"`), `tom` (`"-2Hz"`, até `"-6Hz"` para mais sombrio).
+
+## Ritmo pela escrita
+
 - `.` pausa média, `...` pausa longa de suspense, `,` respiro curto.
-- Para uma pausa dramática antes da revelação, termine a cena anterior com `...` e aumente `"pausa": 0.6` nessa cena (pausa é o silêncio depois da fala, em segundos; padrão 0.25).
-- Pronúncia errada de nome estrangeiro: escreva foneticamente na `narracao` (ex.: "Guíguia" para Ghiggia). Atenção: a legenda mostra o texto como foi escrito, então a grafia fonética aparece na tela — só vale a pena quando a pronúncia estiver muito ruim.
+- Pausa dramática antes da revelação: termine a cena anterior com `...` e use `"pausa": 0.6` nela (silêncio depois da fala, em segundos; padrão 0.25).
+- Pronúncia errada de nome estrangeiro: escreva foneticamente na `narracao` (ex.: "Guíguia" para Ghiggia). A legenda mostra o texto como foi escrito, então só vale quando a pronúncia estiver muito ruim.
 
 ## Conferir
 
-Depois de narrar, mostre ao usuário a duração de cada cena e o total. Se passar de ~75s, sugira cortar frases na escalada (nunca no gancho nem na revelação). Se uma cena ficou com mais de 8s, sugira dividi-la em duas (com dois visuais).
+Depois de narrar, mostre a duração de cada cena e o total. Se passar de ~75s, sugira cortar frases na escalada (nunca no gancho nem na revelação). Cena com mais de 8s → sugerir dividir em duas (com dois visuais).
 
-## Sem internet / voz própria
+## Voz gravada ou outro TTS
 
-Se o usuário gravar a própria voz ou usar outro TTS (ElevenLabs etc.), salve um arquivo por cena em `saida/audio/cena_XX.mp3` e crie `saida/narracao.json` com `{"1": {"audio": "saida/audio/cena_01.mp3", "duracao": 4.2, "texto": "...", "palavras": []}}`. Com `palavras` vazio, o montador distribui as legendas pelo tamanho das palavras (sincronia aproximada).
+Salve um arquivo por cena em `saida/audio/cena_XX.mp3` e crie `saida/narracao.json` com `{"1": {"audio": "saida/audio/cena_01.mp3", "duracao": 4.2, "texto": "...", "palavras": []}}`. Com `palavras` vazio, o montador distribui as legendas pelo tamanho das palavras (sincronia aproximada).
