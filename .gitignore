@@ -1,0 +1,5 @@
+# renders e arquivos gerados (pesados)
+projetos/*/saida/
+__pycache__/
+*.pyc
+.DS_Store

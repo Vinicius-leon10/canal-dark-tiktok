@@ -1,0 +1,114 @@
+{
+  "titulo": "O dia em que o Maracanã se calou",
+  "voz": "pt-BR-AntonioNeural",
+  "velocidade": "+5%",
+  "tom": "-2Hz",
+  "musica": "assets/musicas/tensao.mp3",
+  "volume_musica": 0.2,
+  "transicao": "fade",
+  "granulacao": 6,
+  "marca": "@seucanal",
+  "legenda_post": "O silêncio mais famoso da história do futebol. #futebol #historiadofutebol #maracanazo #copadomundo #curiosidades",
+  "texto_capa": "O SILÊNCIO DE 1950",
+  "fontes": [
+    "https://pt.wikipedia.org/wiki/Maracanaço",
+    "https://www.fifa.com/tournaments/mens/worldcup/1950brazil"
+  ],
+  "cenas": [
+    {
+      "narracao": "Quase duzentas mil pessoas. E, em um segundo, nenhuma delas conseguiu fazer barulho.",
+      "visual": "imagens/01.jpg",
+      "descricao_visual": "Maracanã lotado em 1950 (Commons: 'Maracanã 1950') ou IA: huge crowd in a 1950s stadium, silent, black and white",
+      "texto_tela": "MARACANÃ, 1950",
+      "filtro": "arquivo",
+      "enquadramento": "encaixar",
+      "movimento": "zoom_in"
+    },
+    {
+      "narracao": "Dezesseis de julho de 1950. Último jogo da Copa do Mundo, no Rio de Janeiro.",
+      "visual": "imagens/02.jpg",
+      "descricao_visual": "Fachada do Maracanã nos anos 1950",
+      "texto_tela": "16 DE JULHO DE 1950",
+      "filtro": "arquivo",
+      "movimento": "pan_direita"
+    },
+    {
+      "narracao": "O Brasil só precisava de um empate contra o Uruguai para ser campeão.",
+      "visual": "imagens/03.jpg",
+      "descricao_visual": "Seleção brasileira de 1950 perfilada, uniforme branco",
+      "filtro": "arquivo",
+      "enquadramento": "encaixar"
+    },
+    {
+      "narracao": "Os jornais já tinham impresso a manchete. A festa já estava pronta.",
+      "visual": "imagens/04.jpg",
+      "descricao_visual": "IA: 1950s newspaper printing press, headline 'CAMPEÕES', dramatic light, vertical",
+      "filtro": "pb",
+      "movimento": "zoom_out"
+    },
+    {
+      "narracao": "Logo no começo do segundo tempo, Friaça faz um a zero. O estádio explode.",
+      "visual": "imagens/05.jpg",
+      "descricao_visual": "IA: 1950s crowd celebrating in stadium, hats in the air, black and white",
+      "filtro": "arquivo",
+      "efeito": "assets/efeitos/whoosh.mp3"
+    },
+    {
+      "narracao": "Mas Schiaffino empata. E o silêncio começa a se espalhar pelas arquibancadas...",
+      "visual": "imagens/06.jpg",
+      "descricao_visual": "IA: worried faces in a 1950s stadium crowd, close-up, black and white film",
+      "filtro": "arquivo",
+      "movimento": "zoom_in",
+      "pausa": 0.5
+    },
+    {
+      "narracao": "Faltando onze minutos, Ghiggia avança pela direita. Barbosa espera o cruzamento.",
+      "visual": "imagens/07.jpg",
+      "descricao_visual": "IA: silhouette of a 1950s winger running with the ball, low angle, dramatic",
+      "filtro": "pb",
+      "movimento": "pan_esquerda"
+    },
+    {
+      "narracao": "Ele chuta no canto. Uruguai dois, Brasil um.",
+      "visual": "imagens/08.jpg",
+      "descricao_visual": "IA: ball hitting the back of the net, 1950s goal, black and white, motion blur",
+      "texto_tela": "URUGUAI 2 x 1 BRASIL",
+      "filtro": "pb",
+      "transicao": "corte",
+      "efeito": "assets/efeitos/impacto.mp3",
+      "movimento": "zoom_in"
+    },
+    {
+      "narracao": "O Maracanã ficou mudo. Ghiggia diria depois: só três pessoas calaram o Maracanã. Frank Sinatra, o Papa e eu.",
+      "visual": "imagens/09.jpg",
+      "descricao_visual": "IA: empty stadium stands at dusk, papers on the ground, melancholic",
+      "filtro": "documentario",
+      "transicao": "fadeblack",
+      "movimento": "zoom_out"
+    },
+    {
+      "narracao": "O goleiro Barbosa carregou a culpa pelo resto da vida.",
+      "visual": "imagens/10.jpg",
+      "descricao_visual": "IA: lonely 1950s goalkeeper silhouette sitting in an empty goal, fog",
+      "filtro": "pb",
+      "movimento": "zoom_in"
+    },
+    {
+      "narracao": "E a camisa branca nunca mais foi usada. Três anos depois, um concurso escolheu o novo uniforme: amarelo e verde.",
+      "visual": "imagens/11.jpg",
+      "descricao_visual": "IA: yellow football shirt with green collar hanging in a dark locker room, single light beam",
+      "texto_tela": "A CAMISA AMARELA NASCEU AQUI",
+      "filtro": "documentario",
+      "transicao": "fadeblack",
+      "movimento": "zoom_in"
+    },
+    {
+      "narracao": "Você sabia que a camisa mais famosa do mundo nasceu de uma derrota?",
+      "visual": "imagens/12.jpg",
+      "descricao_visual": "IA: yellow Brazil-style jersey in spotlight, dark background, cinematic",
+      "filtro": "documentario",
+      "movimento": "estatico",
+      "pausa": 0.8
+    }
+  ]
+}
