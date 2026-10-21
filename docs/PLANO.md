@@ -113,7 +113,8 @@ Ken Burns em fotos, clipes de vídeo, filtros `documentario`/`arquivo`/`pb`, enq
 
 - **Fase 1 — Piloto** (próxima sessão): ambiente local pronto, voz escolhida, vídeo do Maracanazo finalizado e aprovado pelo usuário.
 - **Fase 2 — Primeiros 10 vídeos**: 1 por dia, ajustando estilo a partir do retorno (retenção, comentários). Lista de pautas inicial na skill `roteiro-futebol`.
-- **Fase 3 — Escala**: séries ("Copas esquecidas #1…"), lote de roteiros por semana, automação das imagens (API) se o navegador ficar lento, planilha/registro de vídeos postados e métricas.
+- **Fase 3 — Escala**: séries ("Copas esquecidas #1…"), lote de roteiros por semana, automação das imagens (API) se o navegador ficar lento, planilha/registro de vídeos postados e métricas (a partir do campo `publicado` de cada roteiro.json).
+- **Ideia para o pipeline**: "silêncio antes da revelação", cortar a música cerca de 1s antes da cena da revelação e voltar com o impacto. Hoje o `montar_video.py` só faz ducking; precisaria de um campo por cena (ex.: `silenciar_musica: true`).
 
 ## 10. Decisões e histórico
 
@@ -124,3 +125,4 @@ Ken Burns em fotos, clipes de vídeo, filtros `documentario`/`arquivo`/`pb`, enq
 | 2026-10-21 | Voz: ElevenLabs (principal) + edge-tts (reserva). Imagens: Gemini Pro pelo navegador + fotos de arquivo. |
 | 2026-10-21 | Produção passa a rodar no computador do usuário (acesso a navegador e arquivos locais). |
 | 2026-10-21 | Chave ElevenLabs: reaproveitar a que o usuário já tem em outro projeto; o Claude copia para o `.env` na primeira sessão local, sem exibir. |
+| 2026-10-21 | Números/datas/placares de tela e gancho checados em duas fontes; checklist antes de postar e registro `publicado` no roteiro.json. |

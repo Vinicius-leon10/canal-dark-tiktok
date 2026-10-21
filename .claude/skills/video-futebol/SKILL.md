@@ -13,6 +13,13 @@ Orquestra as outras skills na ordem. A visão do projeto, o ambiente e as decis�
 4. **Narração** — skill `narracao-documentario`: `python ferramentas/narrar.py projetos/<slug>` (ElevenLabs, com a voz do canal registrada em `docs/PLANO.md`).
 5. **Prévia** — skill `edicao-documentario`: `--previa`, grade de quadros, revisão, ajustes.
 6. **Final** — render 1080x1920 e entrega: `saida/<slug>.mp4`, `saida/capa.jpg`, legenda do post com hashtags, sugestão de horário (TikTok BR: 12h–14h e 19h–22h) e o comentário fixado (pergunta para engajar ou "Parte 2?").
+7. **Checklist antes de postar** — mostre ao usuário marcado:
+   - [ ] Números, datas e placares conferidos em duas fontes (estão em `fontes`)
+   - [ ] Nenhuma imagem de TV ou de agência; `creditos.txt` preenchido se houver foto real
+   - [ ] Música e efeitos livres de direitos
+   - [ ] Legenda do post revisada (ortografia e nomes próprios)
+   - [ ] Lembrete: marcar como conteúdo gerado por IA ao postar
+8. **Registro** — depois que o usuário postar, grave no `roteiro.json` o campo `"publicado": {"data": "AAAA-MM-DD", "link": "https://..."}`. É a base da planilha de métricas da Fase 3.
 
 ## Estrutura do repositório
 
