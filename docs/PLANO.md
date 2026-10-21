@@ -53,7 +53,7 @@ Faça nesta ordem e marque aqui quando concluir:
 - [ ] Verificar ferramentas: `ffmpeg -version`, `python --version` (3.10+). Instalar se faltar:
       Windows `winget install Gyan.FFmpeg Python.Python.3.12` · Mac `brew install ffmpeg python`.
 - [ ] `pip install -r requirements.txt`
-- [ ] Usuário copia `.env.exemplo` para `.env` e cola a `ELEVENLABS_API_KEY` (a mesma chave que ele já usa em outro repositório). O `.env` está no `.gitignore`. O Claude não lê nem exibe o conteúdo do `.env`.
+- [ ] **Chave da ElevenLabs (combinado com o usuário):** ele NÃO vai digitar a chave de novo — ela já existe em outro projeto/repositório dele. Perguntar em qual pasta (ou repositório) ela está e **copiar só a linha `ELEVENLABS_API_KEY=...` para o `.env` deste projeto com um comando que não exiba o valor** (ex.: `grep '^ELEVENLABS_API_KEY=' <outro>/.env >> .env`, sem `cat`/`echo` da chave). Se estiver só no GitHub, baixar o arquivo e extrair a linha do mesmo jeito, sem mostrar; se o repositório de origem for público, recomendar gerar uma chave nova antes. Alternativa: gravar como variável de ambiente do sistema (vale para todos os projetos). Confirmar no fim com `python ferramentas/narrar.py --vozes elevenlabs` (lista as vozes = chave funcionando). O `.env` está no `.gitignore`; nunca exibir seu conteúdo.
 - [ ] Se a chave estiver commitada em algum repositório (principalmente público), gerar uma chave nova na ElevenLabs e apagar a antiga.
 - [ ] `python ferramentas/narrar.py --vozes elevenlabs` → escolher a voz do canal (masculina, grave, narrador; testar 2–3 vozes com a mesma frase do gancho). Gravar o voice_id em `voz_elevenlabs` no roteiro de exemplo e anotar aqui: **voz do canal = _______**.
 - [ ] Baixar fontes (Google Fonts, licença livre) para `assets/fontes/`: **Montserrat** (Black) e **Playfair Display** (Black).
@@ -123,3 +123,4 @@ Ken Burns em fotos, clipes de vídeo, filtros `documentario`/`arquivo`/`pb`, enq
 | 2026-10-21 | Pipeline em código (Python + ffmpeg) com skills do Claude Code; um projeto por pasta. |
 | 2026-10-21 | Voz: ElevenLabs (principal) + edge-tts (reserva). Imagens: Gemini Pro pelo navegador + fotos de arquivo. |
 | 2026-10-21 | Produção passa a rodar no computador do usuário (acesso a navegador e arquivos locais). |
+| 2026-10-21 | Chave ElevenLabs: reaproveitar a que o usuário já tem em outro projeto; o Claude copia para o `.env` na primeira sessão local, sem exibir. |
