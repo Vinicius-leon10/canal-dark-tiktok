@@ -20,7 +20,7 @@ Vídeos verticais (9:16, 45–75s) em formato documentário narrado: curiosidade
 ```bash
 pip install -r requirements.txt
 python ferramentas/narrar.py --vozes elevenlabs              # escolher voz
-python ferramentas/narrar.py projetos/<slug>                 # narração (precisa ELEVENLABS_API_KEY)
+python ferramentas/narrar.py projetos/<slug>                 # narração (chave no .env)
 python ferramentas/montar_video.py projetos/<slug> --previa  # rascunho 540x960
 python ferramentas/montar_video.py projetos/<slug>           # final 1080x1920
 ```
@@ -28,6 +28,6 @@ python ferramentas/montar_video.py projetos/<slug>           # final 1080x1920
 ## Regras
 - Fatos checados e fontes em `roteiro.json` → `fontes`.
 - Nada de trechos de TV ou fotos de agência; só domínio público, licença livre, IA ou stock grátis.
-- Chaves de API só em variáveis de ambiente; nunca no git nem no chat.
+- Chaves de API só no `.env` local (está no .gitignore) ou em variáveis de ambiente; nunca no git nem no chat. Não abra nem mostre o `.env`.
 - `projetos/*/saida/` não vai para o git (renders pesados).
 - Ao tomar uma decisão nova com o usuário (voz, estilo, @ do canal), registre em `docs/PLANO.md` seção 10.

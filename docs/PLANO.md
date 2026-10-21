@@ -41,7 +41,7 @@ Um vídeo = uma pasta em `projetos/<slug>/` (slug curto sem acento, ex.: `maraca
 As sessões de produção rodam **no computador do usuário**, com:
 
 - **Navegador** (Claude in Chrome ou o navegador do app Claude) logado na conta Google do usuário com **Gemini Pro** → geração de imagens.
-- **ElevenLabs** com chave de API → narração. A chave fica na variável de ambiente `ELEVENLABS_API_KEY` (nunca no git, nunca colada no chat). A voz escolhida fica em `voz_elevenlabs` no roteiro.json (ou `ELEVENLABS_VOICE_ID`).
+- **ElevenLabs** com chave de API → narração. A chave fica no arquivo `.env` local (`ELEVENLABS_API_KEY=...`, fora do git) ou numa variável de ambiente — nunca no git, nunca colada no chat. A voz escolhida fica em `voz_elevenlabs` no roteiro.json (ou `ELEVENLABS_VOICE_ID`).
 - **ffmpeg** + **Python 3.10+** instalados localmente.
 - **edge-tts** continua como reserva grátis de voz (`--motor edge`).
 
@@ -53,7 +53,8 @@ Faça nesta ordem e marque aqui quando concluir:
 - [ ] Verificar ferramentas: `ffmpeg -version`, `python --version` (3.10+). Instalar se faltar:
       Windows `winget install Gyan.FFmpeg Python.Python.3.12` · Mac `brew install ffmpeg python`.
 - [ ] `pip install -r requirements.txt`
-- [ ] Usuário define `ELEVENLABS_API_KEY` no ambiente (Windows: `setx ELEVENLABS_API_KEY "..."` e abrir um terminal novo; Mac: `export` no `~/.zshrc`).
+- [ ] Usuário copia `.env.exemplo` para `.env` e cola a `ELEVENLABS_API_KEY` (a mesma chave que ele já usa em outro repositório). O `.env` está no `.gitignore`. O Claude não lê nem exibe o conteúdo do `.env`.
+- [ ] Se a chave estiver commitada em algum repositório (principalmente público), gerar uma chave nova na ElevenLabs e apagar a antiga.
 - [ ] `python ferramentas/narrar.py --vozes elevenlabs` → escolher a voz do canal (masculina, grave, narrador; testar 2–3 vozes com a mesma frase do gancho). Gravar o voice_id em `voz_elevenlabs` no roteiro de exemplo e anotar aqui: **voz do canal = _______**.
 - [ ] Baixar fontes (Google Fonts, licença livre) para `assets/fontes/`: **Montserrat** (Black) e **Playfair Display** (Black).
 - [ ] Baixar 2–3 músicas tensas sem letra para `assets/musicas/` (YouTube Audio Library / Pixabay Music) e efeitos `whoosh.mp3` e `impacto.mp3` para `assets/efeitos/` (Pixabay).

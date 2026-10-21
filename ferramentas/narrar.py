@@ -2,7 +2,7 @@
 """Gera a narração de cada cena do roteiro, com o tempo de cada palavra (para as legendas).
 
 Motores:
-  elevenlabs  voz principal do canal (precisa de ELEVENLABS_API_KEY no ambiente)
+  elevenlabs  voz principal do canal (precisa de ELEVENLABS_API_KEY no .env ou no ambiente)
   edge        reserva grátis (edge-tts, vozes neurais da Microsoft, sem chave)
 Por padrão usa elevenlabs se a chave existir; senão, edge. Force com "motor" no roteiro.json ou --motor.
 
@@ -28,6 +28,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
+RAIZ = Path(__file__).resolve().parent.parent
 URL_ELEVENLABS = "https://api.elevenlabs.io/v1"
 MODELO_ELEVENLABS = "eleven_multilingual_v2"
 AJUSTES_ELEVENLABS = {"stability": 0.5, "similarity_boost": 0.75, "style": 0.15, "use_speaker_boost": True}
@@ -46,12 +47,26 @@ def duracao_audio(caminho: Path) -> float:
     return float(saida.stdout.strip())
 
 
+def carregar_env():
+    """Lê o arquivo .env da raiz (fica só no computador, fora do git) sem sobrescrever o ambiente."""
+    arquivo = RAIZ / ".env"
+    if not arquivo.exists():
+        return
+    for linha in arquivo.read_text(encoding="utf-8").splitlines():
+        linha = linha.strip()
+        if not linha or linha.startswith("#") or "=" not in linha:
+            continue
+        nome, valor = linha.split("=", 1)
+        os.environ.setdefault(nome.strip(), valor.strip().strip('"').strip("'"))
+
+
 # ---------------------------------------------------------------- ElevenLabs
 
 def chave_elevenlabs():
     chave = os.environ.get("ELEVENLABS_API_KEY")
     if not chave:
-        sys.exit("defina a variável de ambiente ELEVENLABS_API_KEY (ou use --motor edge)")
+        sys.exit("ELEVENLABS_API_KEY não encontrada: coloque no arquivo .env (veja .env.exemplo) "
+                 "ou como variável de ambiente, ou use --motor edge")
     return chave
 
 
@@ -213,4 +228,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
     if not args.vozes and not args.projeto:
         parser.error("informe a pasta do projeto")
+    carregar_env()
     asyncio.run(principal(args))

@@ -5,7 +5,7 @@ description: Gera a voz do narrador (ElevenLabs; edge-tts como reserva grátis) 
 
 # Narração estilo documentário
 
-A ferramenta é `ferramentas/narrar.py`. Motor principal: **ElevenLabs** (precisa de `ELEVENLABS_API_KEY` no ambiente). Reserva grátis: **edge-tts** (`--motor edge`, sem chave).
+A ferramenta é `ferramentas/narrar.py`. Motor principal: **ElevenLabs** (chave `ELEVENLABS_API_KEY` no arquivo `.env` da raiz — modelo em `.env.exemplo` — ou no ambiente). Reserva grátis: **edge-tts** (`--motor edge`, sem chave).
 
 ## Rodar
 
@@ -19,7 +19,7 @@ python ferramentas/narrar.py --vozes edge                 # lista vozes pt-BR do
 
 Gera `saida/audio/cena_XX.mp3` e `saida/narracao.json` (duração + tempo de cada palavra). O `montar_video.py` usa esse arquivo para sincronizar imagens e legendas, então **sempre que mudar o texto de uma cena, renarre essa cena**.
 
-Se a chave não estiver definida, peça ao usuário para configurar a variável de ambiente `ELEVENLABS_API_KEY` (nunca peça para colar a chave no chat).
+Se a chave não estiver definida, peça ao usuário para copiar `.env.exemplo` para `.env` e preencher a chave ele mesmo. Nunca peça a chave no chat e não abra/mostre o `.env`.
 
 ## ElevenLabs
 

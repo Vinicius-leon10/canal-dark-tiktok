@@ -3,3 +3,6 @@ projetos/*/saida/
 __pycache__/
 *.pyc
 .DS_Store
+
+# chaves de API (nunca versionar)
+.env
