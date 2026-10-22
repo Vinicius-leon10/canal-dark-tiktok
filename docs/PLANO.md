@@ -50,12 +50,12 @@ As sessões de produção rodam **no computador do usuário**, com:
 Faça nesta ordem e marque aqui quando concluir:
 
 - [x] `git pull` deste repositório (branch com as skills).
-- [ ] Verificar ferramentas: `ffmpeg -version`, `python --version` (3.10+). Instalar se faltar:
+- [x] Verificar ferramentas (2026-10-21: ffmpeg 9.0.2 via winget, Python 3.14.3): `ffmpeg -version`, `python --version` (3.10+). Instalar se faltar:
       Windows `winget install Gyan.FFmpeg Python.Python.3.12` · Mac `brew install ffmpeg python`.
-- [ ] `pip install -r requirements.txt`
+- [x] `pip install -r requirements.txt`
 - [x] **Chave da ElevenLabs** (2026-10-21): criada pelo assistente oficial (`npx -y @elevenlabs/cli@latest onboard init`), com login e "Authorize" no navegador. Chave nova, terminada em `5b34`. Está no `.env` deste projeto (fora do git) **e** na variável de ambiente de usuário do Windows `ELEVENLABS_API_KEY`, que vale para todos os projetos do PC (inclusive o app de inglês). Conferida com `python ferramentas/narrar.py --vozes elevenlabs`. Nunca exibir o valor nem abrir o `.env`. Para trocar a chave: rodar `onboard connect --replace --env-path .env` e copiar de novo para a variável do Windows sem mostrar.
 - [x] A chave antiga não estava commitada em nenhum repositório (o `jogo-infantil-igles` foi verificado, inclusive o histórico); não precisou revogar.
-- [ ] `python ferramentas/narrar.py --vozes elevenlabs` → escolher a voz do canal (masculina, grave, narrador; testar 2–3 vozes com a mesma frase do gancho). Gravar o voice_id em `voz_elevenlabs` no roteiro de exemplo e anotar aqui: **voz do canal = _______**.
+- [ ] `python ferramentas/narrar.py --vozes elevenlabs` → escolher a voz do canal (masculina, grave, narrador; testar 2–3 vozes com a mesma frase do gancho). Gravar o voice_id em `voz_elevenlabs` no roteiro de exemplo e anotar aqui: **voz do canal = Brian - Deep, Resonant and Comforting (`nPczCjzI2devNBz1zQrb`, voz padrão da ElevenLabs, funciona no plano grátis)**, com o modelo `eleven_multilingual_v2`. Escolhida em 2026-10-21 ouvindo o gancho. ⚠️ O plano grátis não tem licença comercial e pede crédito à ElevenLabs; assinar um plano pago antes de monetizar. Se um dia assinar, as vozes brasileiras da biblioteca (Victor Power `YNOujSUmHtgN6anjqXPf`, Will `h96v1HCJtcisNNeagp0R`) ficam liberadas. Fichas de teste em `assets/testes-voz/` (fora do git).
 - [ ] Baixar fontes (Google Fonts, licença livre) para `assets/fontes/`: **Montserrat** (Black) e **Playfair Display** (Black).
 - [ ] Baixar 2–3 músicas tensas sem letra para `assets/musicas/` (YouTube Audio Library / Pixabay Music) e efeitos `whoosh.mp3` e `impacto.mp3` para `assets/efeitos/` (Pixabay).
 - [ ] Testar o Gemini pelo navegador: gerar 1 imagem com o prompt de estilo (seção 6), baixar e conferir tamanho/proporção e marca d'água.
@@ -126,4 +126,5 @@ Ken Burns em fotos, clipes de vídeo, filtros `documentario`/`arquivo`/`pb`, enq
 | 2026-10-21 | Produção passa a rodar no computador do usuário (acesso a navegador e arquivos locais). |
 | 2026-10-21 | Chave ElevenLabs: reaproveitar a que o usuário já tem em outro projeto; o Claude copia para o `.env` na primeira sessão local, sem exibir. |
 | 2026-10-21 | Mudança: a chave antiga não estava em arquivo nenhum. Criada uma chave nova pelo `onboard` da ElevenLabs e gravada também como variável de ambiente de usuário do Windows, para servir a todos os projetos. Narração via API (não o conector, que é para ElevenAgents). |
+| 2026-10-21 | Voz do canal: Brian (`nPczCjzI2devNBz1zQrb`), voz grátis da ElevenLabs, escolhida no lugar de Victor Power e Will (pagas). Conta no plano grátis (10 mil caracteres/mês ≈ 8 vídeos); plano pago antes de monetizar. Alternativas grátis pesquisadas: Kokoro (Apache 2.0, roda no PC), Chatterbox pt-br (MIT, precisa de Colab), Piper (MIT). ffmpeg 9.0.2 e edge-tts instalados. |
 | 2026-10-21 | Números/datas/placares de tela e gancho checados em duas fontes; checklist antes de postar e registro `publicado` no roteiro.json. |

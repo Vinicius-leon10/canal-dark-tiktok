@@ -6,3 +6,7 @@ __pycache__/
 
 # chaves de API (nunca versionar)
 .env
+
+# testes de voz (descartáveis)
+assets/testes-voz/
+.venv/
